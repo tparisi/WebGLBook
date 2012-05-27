@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+body {
+	background-color:#30599C;
+	color:#aa6644
+}
+
+
+#prompt {
+	width:96%;
+	height:4%;
+	bottom:1%;
+	text-align:center;
+	position:absolute;
+}
+	
+#container {
+	width:96%;
+	height:95%;
+	position:absolute;
+}
+
+#page-title {
+	width:30%;
+	height:10%;
+	top:3%;
+	right:5%;
+	text-align:center;
+	position:absolute;
+}
+
+#user-stories {
+	font-size:10px;
+	overflow:hidden;
+	background-color:rgba(255,255,255,.5);
+	border-radius:2%;
+	border:solid;
+	border-width:2px;
+	border-color:#808080;
+	width:28%;
+	height:25%;
+	top:14%;
+	right:5%;
+	position:absolute;
+	padding:4px;
+}

@@ -1,0 +1,51 @@
+Cloned Chapter 7 model viewer, using to preview each model.
+Nissan GTR OBJ - 
+ - downloaded from turbosquid.
+ - materials weren't showing up imported into Blender.
+ - Tried simple convert using Three.js OBJ converter, materials still didn't show up
+ - Problem was spaces in file names in .MTL (material) file e.g. 'Nissan OBJ.js'; I took out spaces and materials worked.
+ - Converted to JS, couldn't see texture
+ - (edited JS file) Changed diffuse color of materials from black to white, textures showed up
+ - (edited JS file) Added blue specular to car body for pop
+ 
+ Muscle Car -
+  - no materials or textures present. might complain to turbosquid
+  
+ Camaro -
+  - downloaded from turbosquid, no materials in the file, had to chat with support.
+  - they sent me updated model. noted that pivot point (origin) is at front of car instead of center,
+    and off-center in X dimension too
+
+
+ Nova Car (OBJ)
+  - fixed spaces in material file name
+  - fixed spaces in texture file names, also a problem
+  - converted Targa texture files to JPEG
+  - loaded in model previewer, noted that pivot point (origin) is at front of car instead of center
+  
+ Hatchback (OBJ)
+  - came in two pieces
+  - needed to convert BMP to JPG
+  - needed to hack double-sided for the wheel
+  
+A lot of the models don't have anything underneath. That's ok, only our main one needs to.
+
+
+SCORING
+RESTART
+
+CONTENT
+
+Sounds
+
+Driving in a Car http://www.freesound.org/people/RutgerMuller/sounds/50910/
+Nissan Maxima Burnout http://www.freesound.org/people/audible-edge/sounds/71740/
+Car Crash http://www.freesound.org/people/sandyrb/sounds/95078/
+Car Revving http://www.freesound.org/people/Walter_Odington/sounds/18620/
+
+
+
+CODE
+Awesome speedometer
+https://github.com/vjt/canvas-speedometer
+

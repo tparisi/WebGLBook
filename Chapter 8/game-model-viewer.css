@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+
+* {
+	font-style:normal;
+}
+
+#prompt {
+	width:95%;
+	height:12%;
+	bottom:30px;
+	text-align:center;
+	position:absolute;
+}
+
+#container {
+	position:absolute;
+	width:95%; 
+	height:80%;
+}
+
+#modelStats {
+	width:20%;
+	height:20%;
+	right:10%;
+	top:20%;
+	margin:4px;
+	padding:4px;
+	background-color:rgba(200, 200, 220, .5);
+	font-size:10pt;
+	position:absolute;
+	display:none;
+}

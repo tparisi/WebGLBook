@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+* {
+	font-style:normal;
+}
+
+body {
+		text-align:center;
+		font-style:normal;
+		font-weight:bold;
+		color:#663300;
+		background-color:#cccc99
+}
+
+#prompt {
+	color:#cccc99;
+	width:95%;
+	height:6%;
+	bottom:30px;
+	text-align:center;
+	position:absolute;
+}
+
+#container {
+	color:#cccc99;
+	background-color:#443333;
+	position:absolute;
+	width:98%; height:85%;
+}

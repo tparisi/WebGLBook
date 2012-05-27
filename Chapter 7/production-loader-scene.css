@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+body {
+	background-color:#444444;
+	color:#ffffff;
+}
+
+h1 {
+	color:#ffffff;
+	font-style:normal;
+	font-family:Geneva;
+	font-weight:bold
+}
+

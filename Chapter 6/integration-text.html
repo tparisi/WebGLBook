@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>3D Text</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<link href="integration-text.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="integration-text.js"></script>
+
+	<script src="../fonts/optimer_bold.typeface.js"></script>
+	<script src="../fonts/droid/droid_sans_bold.typeface.js"></script>
+
+	<script>
+
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	var theApp = null;
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			theApp = new TextApp();
+			theApp.init({ container: container });
+			theApp.run();
+		}
+	);	
+	</script>
+
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>

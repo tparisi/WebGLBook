@@ -1,0 +1,19 @@
+# File produced by AccuTrans 3D
+
+newmtl car_std
+  Ns 10.0
+  d 1.0
+  illum 2
+  Kd 0 0 0
+  Ka 0 0 0
+  Ks 0 0 0
+  map_Kd C:\Documents and Settings\admin\Desktop\nissan GTR\Product\nissan lowpoly\Objects\..\images\car.jpg
+
+newmtl wheel_std
+  Ns 10.0
+  d 1.0
+  illum 2
+  Kd 0 0 0
+  Ka 0 0 0
+  Ks 0 0 0
+  map_Kd C:\Documents and Settings\admin\Desktop\nissan GTR\Product\nissan lowpoly\Objects\..\images\wheels.jpg

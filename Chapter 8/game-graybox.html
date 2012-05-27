@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Game - Gray Box</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="../sim/animation.js"></script>
+	<script src="jsonModel.js"></script>
+	<script src="car.js"></script>
+	<script src="player.js"></script>
+	<script src="exhaust.js"></script>
+	<script src="environment.js"></script>
+	<script src="grayBox.js"></script>
+	<script>
+
+	$(document).ready(
+		function() {
+
+			var container = document.getElementById("container");
+			
+			var app = new GrayBox();
+			app.init({ container: container });
+
+			app.run();
+
+		}
+	);
+
+	</script>
+
+</head>
+<body>
+	<center><h1>Game - Gray Box</h1><b>C</b>amera, <b>C</b>haracter and <b>C</b>ontrol Prototype</center>
+    <div id="container" style="width:95%; height:85%; position:absolute; outline:none; background-color:#3fafdd;"></div>
+</body>
+</html>

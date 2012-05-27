@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Road Race!</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+    <link rel="stylesheet" type="text/css" href="game.css" />
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="../sim/animation.js"></script>
+	<script src="../sim/webGLDetector.js"></script>	
+	<script src="jsonModel.js"></script>
+	<script src="car.js"></script>
+	<script src="player.js"></script>
+	<script src="exhaust.js"></script>
+	<script src="environment.js"></script>
+	<script src="game.js"></script>
+    <script type="text/javascript" src="xcanvas.js"></script>
+    <script type="text/javascript" src="tbe.js"></script>
+
+    <script type="text/javascript" src="digitaldisplay.js"></script>
+    <script type="text/javascript" src="speedometer.js"></script>
+    <script type="text/javascript" src="themes/default.js"></script>
+    <script type="text/javascript" src="themes/racing-black.js"></script>
+	<script>
+
+	// Awesome speedometer code - here's the source!
+	// https://github.com/vjt/canvas-speedometer
+
+	var game_volume = 1;
+	
+	function loadSounds()
+	{
+		var sounds = {
+			driving : document.getElementById ('driving'),
+			rev_short : document.getElementById ('rev_short'),
+			rev_long : document.getElementById ('rev_long'),
+			bounce : document.getElementById ('bounce'),
+			crash : document.getElementById ('crash'),
+		};
+
+		return sounds;
+	}
+
+	function adjustVolume(sounds, volume)
+	{
+		for (sound in sounds)
+		{
+			sounds[sound].volume = volume;
+		}
+	}
+
+	var app = null;
+	
+	$(document).ready(
+		function() {
+
+			var container = document.getElementById("container");
+			
+			try {
+
+				Sim.WebGLDetector.detectWebGL();
+				
+	        	var timer = document.getElementById ('elapsedTime');
+	        	var odometer = document.getElementById ('odometer');
+	        	var kmph = document.getElementById ('kmph');
+	        	var rpm = document.getElementById ('rpm');
+
+	        	var sounds = loadSounds();
+	        	adjustVolume(sounds, game_volume);
+	        	        	
+	            // Check out configuration and API on GitHub Wiki:
+	            // http://wiki.github.com/vjt/canvas-speedometer
+	            speedometer = new Speedometer ('speedometer', {theme: 'racing-black', max:250, 
+	            	threshold:150});
+	            speedometer.draw ();
+	            speedometer.addEventListener ('speedometer:animateend', function () {
+	              controls.start ();
+	            });
+	
+	            // The tachometer
+	            tachometer = new Speedometer ('tachometer', {theme: 'racing-black', max:5000, 
+	               threshold:3500});
+	            tachometer.draw();
+	            tachometer.addEventListener ('speedometer:animateend', function () {
+	              tachcontrols.start ();
+	            });
+	
+	
+				app = new RacingGame();
+				app.init({ container: container, 
+					hud: {
+						speedometer:speedometer,
+						tachometer:tachometer,
+						timer:timer, 
+						odometer:odometer,
+						},
+					sounds : sounds,
+				});
+	
+	            timer.style.display = 'block';
+	            odometer.style.display = 'block';
+	            kmph.style.display = 'block';
+	            rpm.style.display = 'block';
+
+	        	app.focus();            
+				app.run();
+	
+			}
+			catch(e)
+			{
+				container.innerHTML = e.toString();		
+			}			
+		}	
+	);
+
+	function onRestartClicked()
+	{
+		app.restart();
+	}
+	
+	</script>
+
+</head>
+<body>
+	<center><h1>Road Race!</h1></center>
+	<!--  
+		Sky background texture
+		http://freestocktextures.com/texture/id/557
+	 -->
+    <div id="container" style="width:98%; height:85%; position:absolute; outline:none; background-color:#3fafdd;"></div>
+	<div id="kmph">
+	km/h
+       <div id="speedometer"></div>
+	</div>
+	<div id="rpm">
+	rpm
+       <div id="tachometer"></div>
+	</div>
+    <div id="odometer">
+    0.00
+    </div>
+    <div id="elapsedTime">
+    0.00
+    </div>
+    <div id="overlay" class="overlay" >
+    <div id="header" class="header">RACE COMPLETE</div>
+    <div id="contents" class="contents">
+    ELAPSED TIME: 42.43s<br></br>
+    BEST TIME: 39.31s
+    </div>
+    <div id="restartButton" class="restartButton"><button onclick="onRestartClicked(this);">Restart</button></div>
+    </div>
+
+<!-- Sound credits -->
+<!-- 
+
+Driving in a Car http://www.freesound.org/people/RutgerMuller/sounds/50910/
+Nissan Maxima Burnout http://www.freesound.org/people/audible-edge/sounds/71740/
+Car Crash http://www.freesound.org/people/sandyrb/sounds/95078/
+Car Revving http://www.freesound.org/people/Walter_Odington/sounds/18620/
+ -->
+
+	<audio id="driving">
+	  <source src="../sounds/50910__rutgermuller__in-car-driving.wav" type="audio/wav" />
+	  Your browser does not support WAV files in the audio element.
+	</audio>
+	<audio id="rev_short">
+	  <source src="../sounds/rev-short.wav" type="audio/wav" />
+	  Your browser does not support WAV files in the audio element.
+	</audio>
+	<audio id="rev_long">
+	  <source src="../sounds/rev-trimmed.wav" type="audio/wav" />
+	  Your browser does not support WAV files in the audio element.
+	</audio>
+	<audio id="bounce">
+	  <source src="../sounds/bounce.wav" type="audio/wav" />
+	  Your browser does not support WAV files in the audio element.
+	</audio>
+	<audio id="crash">
+	  <source src="../sounds/crash-trimmed.wav" type="audio/wav" />
+	  Your browser does not support WAV files in the audio element.
+	</audio>
+    
+</body>
+</html>

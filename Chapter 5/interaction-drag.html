@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dragging Example</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../libs/Tween.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="../sim/animation.js"></script>
+	<script src="../sim/interaction.js"></script>
+	<script src="interaction-drag.js"></script>
+	<script>
+
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	var theApp = null;
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			theApp = new InteractionApp();
+			theApp.init({ container: container });
+			theApp.run();
+		}
+	);
+
+	
+	function onAnimateChecked(cb)
+	{
+		theApp.setAnimateDrag(cb.checked);
+	}
+	</script>
+
+</head>
+<body>
+	<center><h1>Dragging an Object</h1></center>
+    <div id="container" style="width:95%; height:80%; position:absolute;"></div>
+	<div id="prompt" style="width:95%; height:6%; bottom:30px; text-align:center; position:absolute;">
+	Click to drag on the object<br/>
+	<input type="checkbox" name="animate" onClick="onAnimateChecked(this);"/>Animate with Ease Out
+	</div>
+	</div>
+
+</body>
+</html>

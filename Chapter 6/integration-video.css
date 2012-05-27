@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+
+#prompt {
+	width:95%;
+	height:6%;
+	bottom:30px;
+	text-align:center;
+	position:absolute;	
+}
+
+#container {
+	width:95%;
+	height:80%;
+	position:absolute;
+}

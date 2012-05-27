@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Animating Materials with Key Frames</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="../sim/animation.js"></script>
+	<script src="../sim/ColladaLoader.js"></script>
+	<script src="keyframe-material.js"></script>
+	<script>
+
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	var theApp = null;
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			theApp = new MaterialApp();
+			theApp.init({ container: container });
+			theApp.run();
+		}
+	);
+
+	function onTransparencyChecked(cb)
+	{
+		theApp.setAnimateTransparency(cb.checked);
+	}
+
+	function onColorChecked(cb)
+	{
+		theApp.setAnimateColor(cb.checked);
+	}
+
+	function onSpecularChecked(cb)
+	{
+		theApp.setAnimateSpecular(cb.checked);
+	}
+	</script>
+
+</head>
+<body>
+	<center><h1>Animating Materials</h1></center>
+    <div id="container" style="width:95%; height:80%; position:absolute;"></div>
+	<div id="prompt" style="width:95%; height:6%; bottom:0px; text-align:center; position:absolute;">
+	Animate<br/>
+	<input type="checkbox" name="transparency" onClick="onTransparencyChecked(this);"/>Transparency
+	<input type="checkbox" name="color" onClick="onColorChecked(this);"/>Color
+	<input type="checkbox" name="specular" onClick="onSpecularChecked(this);"/>Specular Color
+	</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Game - Art Direction</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+    <link rel="stylesheet" type="text/css" href="game.css" />
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="../sim/animation.js"></script>
+	<script src="jsonModel.js"></script>
+	<script src="car.js"></script>
+	<script src="player.js"></script>
+	<script src="exhaust.js"></script>
+	<script src="environment.js"></script>
+	<script src="artDirection.js"></script>
+    <script type="text/javascript" src="xcanvas.js"></script>
+    <script type="text/javascript" src="tbe.js"></script>
+
+    <script type="text/javascript" src="digitaldisplay.js"></script>
+    <script type="text/javascript" src="speedometer.js"></script>
+    <script type="text/javascript" src="themes/default.js"></script>
+    <script type="text/javascript" src="themes/racing-black.js"></script>
+    <script type="text/javascript" src="controls.js"></script>
+	<script>
+
+	// Awesome speedometer code - here's the source!
+	// https://github.com/vjt/canvas-speedometer
+		
+	$(document).ready(
+		function() {
+
+			var container = document.getElementById("container");
+
+        	var timer = document.getElementById ('elapsedTime');
+        	var odometer = document.getElementById ('odometer');
+        	var kmph = document.getElementById ('kmph');
+        	var rpm = document.getElementById ('rpm');
+			
+			var app = new ArtDirection();
+			app.init({ container: container });
+
+            // Check out configuration and API on GitHub Wiki:
+            // http://wiki.github.com/vjt/canvas-speedometer
+            speedometer = new Speedometer ('speedometer', {theme: 'racing-black', max:250, 
+            	threshold:150});
+            speedometer.draw ();
+            speedometer.addEventListener ('speedometer:animateend', function () {
+              controls.start ();
+            });
+
+            var controls = new Controls (speedometer);
+
+            // The tachometer
+            tachometer = new Speedometer ('tachometer', {theme: 'racing-black', max:5000, 
+               threshold:3500});
+            tachometer.draw();
+            tachometer.addEventListener ('speedometer:animateend', function () {
+              tachcontrols.start ();
+            });
+
+            var tachcontrols = new Controls (tachometer);
+
+            controls.start ();
+            tachcontrols.start ();
+
+            var startTime = Date.now();
+            function elapsedTime()
+            {
+            	var elapsed = (Date.now() - startTime) / 1000;
+            	
+            	var timer = document.getElementById ('elapsedTime');
+            	timer.innerHTML = "TIME<br>" + elapsed.toFixed(2);
+
+            	var speed = 250;
+            	var distance = speed * elapsed / 3600;
+            	var odo = document.getElementById ('odometer');
+            	odo.innerHTML = "TRIP<br>" + distance.toFixed(2);
+
+            	setTimeout(elapsedTime, 100);
+            }
+
+            setTimeout(elapsedTime, 100);
+			
+            timer.style.display = 'block';
+            odometer.style.display = 'block';
+            kmph.style.display = 'block';
+            rpm.style.display = 'block';
+            
+			app.run();
+
+		}
+	);
+
+	</script>
+
+</head>
+<body>
+	<center><h1>Game - Art Direction</h1></center>
+	<!--  
+		Sky background texture
+		http://freestocktextures.com/texture/id/557
+	 -->
+    <div id="container" style="width:98%; height:85%; position:absolute; outline:none; background-color:#3fafdd;"></div>
+	<div id="kmph">
+	km/h
+       <div id="speedometer"></div>
+	</div>
+	<div id="rpm">
+	rpm
+       <div id="tachometer"></div>
+	</div>
+    <div id="odometer">
+    0.00
+    </div>
+    <div id="elapsedTime">
+    0.00
+    </div>
+    <div id="overlay" class="overlay" >
+    <div id="header" class="header">RACE COMPLETE!</div>
+    <div id="contents" class="contents">
+    ELAPSED TIME: 42.43s<p></p>
+    BEST TIME: 39.31s
+    </div>
+    <div id="restartButton" class="restartButton"><button>Restart</button></div>
+    </div>
+    
+</body>
+</html>

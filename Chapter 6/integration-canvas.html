@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Canvas Integration Example</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<link href="integration-canvas.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="integration-canvas.js"></script>
+	<script src="canvasView.js"></script>
+	<script src="paintCanvasProgram.js"></script>
+	<script src="rssCanvasProgram.js"></script>
+	<script>
+
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			var app = new CanvasApp();
+			app.init({ container: container });
+			app.run();
+		}
+	);
+	</script>
+
+</head>
+<body>
+	<div class="heading">
+	<h1>Using Canvas as a Texture</h1>
+	</div>
+    <div id="container"></div>
+	<div id="prompt">
+	Click to paint on the canvas
+	</div>
+
+</body>
+</html>

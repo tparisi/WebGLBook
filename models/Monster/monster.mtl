@@ -1,0 +1,15 @@
+# Blender MTL File: 'monster.packed.blend'
+# Material Count: 1
+newmtl Material_difz
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.393107 0.266507 0.129729
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd ./textures/difz.jpg
+map_Ks ./textures/spec.jpg
+map_Bump ./textures/normalz.jpg
+
+

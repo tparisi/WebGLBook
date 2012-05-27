@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Loading Models</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="../sim/ColladaLoader.js"></script>
+	<script src="modelViewer.js"></script>
+	<script src="colladaModel.js"></script>
+	<script src="JSONModel.js"></script>
+	<script src="BinaryModel.js"></script>
+	<script>
+
+	var app = null;
+	var currentModel = null;
+	
+	var modelInfo = [
+	     			// Model from http://www.3drt.com/downloads.htm
+	             	{ modelClass : ColladaModel, url :  "../models/collada_monster/monster.dae", scale:0.001, 
+		             	rotation:{ x : -Math.PI / 2, z : -Math.PI / 2 }, model:null},
+	    			// CC Attribution: model from Blendswap
+	    			// http://www.blendswap.com/blends/characters/monster-galera-man/
+	    			// Author: Daniel F. R Gordillo 
+	    			// http://www.blendswap.com/blends/author/dgordillo/
+	              	{ modelClass : JSONModel, url : "../models/Monster/monster.js", scale:0.33, model:null},
+	              	// Model from Turbosquid
+	    			// http://www.turbosquid.com/FullPreview/Index.cfm/ID/611477
+	    			// Author: Interu2x
+	    			// http://www.turbosquid.com/Search/Artists/Interu2x
+	              	{ modelClass : BinaryModel, url : "../models/alien2_obj/alien2_bin.js", scale:0.044, model:null},
+					] ;
+
+	function selectModel()
+	{
+	    var select = document.getElementById("select");
+	    var index = select.selectedIndex - 1;
+		if (index >= 0)
+		{
+			if (currentModel)
+			{
+				app.removeModel(currentModel);
+			}
+
+			var model;
+			var info = modelInfo[index];
+			if (info.model)
+			{
+				model = info.model;
+			}
+			else
+			{
+				model = new info.modelClass;			
+				model.init({ url : info.url, scale:info.scale});
+				info.model = model;
+			}
+			
+			if (info.rotation)
+			{
+				model.object3D.rotation.set(info.rotation.x ? info.rotation.x : 0,
+						info.rotation.y ? info.rotation.y : 0,
+						info.rotation.z ? info.rotation.z : 0);
+								
+			}
+			
+			app.addModel(model);
+			currentModel = model;
+		}
+	}
+
+	$(document).ready(
+		function() {
+
+			var select = document.getElementById("select");
+			var options = [];
+			options[0]=document.createElement("option");
+			options[0].text="Select a model/format";
+			options[1]=document.createElement("option");
+			options[1].text="Hellhound/COLLADA (.DAE)";
+			options[2]=document.createElement("option");
+			options[2].text="Monster/Three.js JSON (.js)";
+			options[3]=document.createElement("option");
+			options[3].text="Alien/Three.js Binary (.js)";
+			select.add(options[0]);
+			select.add(options[1]);
+			select.add(options[2]);
+			select.add(options[3]);
+
+			var container = document.getElementById("container");
+			
+			app = new ModelViewer();
+			app.init({ container: container });
+
+			app.run();
+
+		}
+	);
+
+	</script>
+
+</head>
+<body>
+	<center><h1>Loading Models Into Three.js</h1></center>
+	<div id="models" style="text-align:center;" >
+	<select id="select" onchange="selectModel();"></select>
+	</div>
+    <div id="container" style="width:95%; height:80%; position:absolute;"></div>
+	<div id="prompt" style="width:95%; height:6%; bottom:30px; text-align:center; position:absolute;">
+	Click the mouse to manipulate the model: Left = rotate, Right = Pan<br></br>
+	Credit: Hellhound from <a href='http://www.3drt.com/downloads.htm'>3DRT</a> 
+	Monster by <a href='http://www.blendswap.com/blends/author/dgordillo/'>Daniel F. R Gordillo</a> at <a href='http://www.blendswap.com/blends/characters/monster-galera-man/'>Blendswap</a>
+	Alien by <a href='http://www.turbosquid.com/Search/Artists/Interu2x'>Interu2x</a> at <a href='http://www.turbosquid.com/FullPreview/Index.cfm/ID/611477'>TurboSquid</a>
+		
+	</div>
+
+</body>
+</html>

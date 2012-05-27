@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Creating Popups with DIV Elements</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<link href="integration-div.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="../sim/animation.js"></script>
+	<script src="integration-div.js"></script>
+	<script src="earth-shader.js"></script>
+	<script>
+
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	var theApp = null;
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			theApp = new Shipster();
+			theApp.init({ container: container });
+			theApp.run();
+		}
+	);
+	
+	function onSelectClicked(elt)
+	{
+		var div = document.getElementById("callout");
+		var shipID = div.shipID;
+		theApp.selectShip(shipID);
+		div.style.display = "none";
+	}
+		
+	</script>
+
+</head>
+<body>
+	<h1>Shipster - Choose Your Ship</h1>
+    <div id="container"></div>
+    <div id="callout" class="callout" >
+    <div id="header" class="header"></div>
+    <div id="contents" class="contents"></div>
+    <div id="selectButton" class="selectButton"><button onclick="onSelectClicked(this);">Select</button></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Game - Model Previewer</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<link href="game-model-viewer.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="modelViewer.js"></script>
+	<script src="JSONModel.js"></script>
+	<script>
+
+	var app = null;
+	var container = null;
+	var currentModel = null;
+
+	var modelInfo = [
+	              	// Model from Turbosquid
+	    			// http://www.turbosquid.com/FullPreview/Index.cfm/ID/577061
+	    			// Author: deluxe3D
+	    			// http://www.turbosquid.com/Search/Artists/deluxe3D
+	              	{ modelClass : JSONModel, url : "../models/Nissan GTR OBJ/Objects/NissanOBJ1.js", scale:0.0254, model:null},
+
+	              	// Model from Turbosquid
+					// http://www.turbosquid.com/FullPreview/Index.cfm/ID/302272
+					// Author: Phosphoer
+					// http://www.turbosquid.com/Search/Artists/Phosphoer
+	              	{ modelClass : JSONModel, url : "../models/Nova Car/NovaCar.js", scale:0.33, position:{y:-1}, model:null},
+
+	              	// Model from Turbosquid
+	              	// http://www.turbosquid.com/FullPreview/Index.cfm/ID/595293
+	    			// Author: OpticalDreamSoft
+					// http://www.turbosquid.com/Search/Artists/OpticalDreamSoft
+					{ modelClass : JSONModel, url : "../models/Hatchback/body.js", scale:1, model:null},
+	              	{ modelClass : JSONModel, url : "../models/Hatchback/wheel.js", scale:5, model:null},
+
+	              	// Model from Turbosquid
+	              	// http://www.turbosquid.com/FullPreview/Index.cfm/ID/595293
+	    			// Author: sakis25
+					// http://www.turbosquid.com/Search/Artists/sakis25
+	              	{ modelClass : JSONModel, url : "../models/Camaro-1/Camaro.js", scale:0.1, position:{x:-.5, y:0}, 
+		              	rotation:{ x: -Math.PI / 2, z: Math.PI }, model:null},
+
+	              	// Model by Arefin Mohiuddin, Sunglass.io
+	              	// http://www.turbosquid.com/FullPreview/Index.cfm/ID/595293
+	    			// Author: sakis25
+					// http://www.turbosquid.com/Search/Artists/sakis25
+	              	{ modelClass : JSONModel, url : "../models/SunglassCar/base_pretextured.js", scale:.001, position:{x:0, y:0}, 
+		              	rotation:{ x: -Math.PI / 2, z: Math.PI }, model:null},
+
+	              	// Model from Turbosquid
+	              	// http://www.turbosquid.com/FullPreview/Index.cfm/ID/545178
+	    			// Author: Tox3d
+					// http://www.turbosquid.com/Search/Artists/Tox3d
+	              	{ modelClass : JSONModel, url : "../models/Route66obj/RT66sign.js", scale:.6, position:{x:0, y:0}, 
+		              	rotation:{ x: 0, z: 0 }, model:null},
+
+		            ] ;
+
+	function onModelLoaded(model, info)
+	{
+		var geometry = model.mesh.geometry;
+
+		// Display the bounding box, number of materials and number of faces
+		geometry.computeBoundingBox();
+		var bbox = geometry.boundingBox;
+		var width = bbox.x[1] - bbox.x[0];
+		var height = bbox.y[1] - bbox.y[0];
+		var depth = bbox.z[1] - bbox.z[0];
+
+		var nMaterials = geometry.materials.length;
+		var nFaces = geometry.faces.length;
+		var nPlaces = 3;
+		
+		var statsHTML = "Model Info<br>Dimensions: " + width.toFixed(nPlaces) + " x " +
+			height.toFixed(nPlaces) + " x " + depth.toFixed(nPlaces) + "<br># Materials: " + nMaterials +
+			"<br># Faces: " + nFaces;
+
+		info.model = model;
+		info.stats = statsHTML;
+
+		displayModelStats(statsHTML);
+	}
+
+	function displayModelStats(statsHTML)
+	{
+		var modelStats = document.getElementById("modelStats");
+		modelStats.innerHTML = statsHTML;
+		modelStats.style.display = "block";
+	}
+	
+	function selectModel()
+	{
+	    var select = document.getElementById("select");
+	    var index = select.selectedIndex - 1;
+		if (index >= 0)
+		{
+			if (currentModel)
+			{
+				app.removeModel(currentModel);
+			}
+
+			var model;
+			var info = modelInfo[index];
+			if (info.model)
+			{
+				model = info.model;
+				displayModelStats(info.stats);
+			}
+			else
+			{
+				model = new info.modelClass;			
+				model.init(
+					{ 
+					url : info.url, scale:info.scale, 
+					callback: function(model) {
+									onModelLoaded(model, info);
+								}
+					});
+
+			}
+			
+			if (info.position)
+			{
+				model.object3D.position.set(info.position.x ? info.position.x : 0,
+						info.position.y ? info.position.y : 0,
+						info.position.z ? info.position.z : 0);
+								
+			}
+
+			if (info.rotation)
+			{
+				model.object3D.rotation.set(info.rotation.x ? info.rotation.x : 0,
+						info.rotation.y ? info.rotation.y : 0,
+						info.rotation.z ? info.rotation.z : 0);
+								
+			}
+			
+			app.addModel(model);
+			currentModel = model;
+		}
+	}
+
+	$(document).ready(
+		function() {
+
+			var select = document.getElementById("select");
+			var options = [];
+			options[0]=document.createElement("option");
+			options[0].text="Select a model/format";
+			options[1]=document.createElement("option");
+			options[1].text="Nissan GTR/Three.js JSON (.js)";
+			options[2]=document.createElement("option");
+			options[2].text="Nova Car/Three.js JSON (.js)";
+			options[3]=document.createElement("option");
+			options[3].text="Hatchback Body/Three.js JSON (.js)";
+			options[4]=document.createElement("option");
+			options[4].text="Hatchback Wheel/Three.js JSON (.js)";
+			options[5]=document.createElement("option");
+			options[5].text="Camaro/Three.js JSON (.js)";
+			options[6]=document.createElement("option");
+			options[6].text="Sunglass.io Car/Three.js JSON (.js)";
+			options[7]=document.createElement("option");
+			options[7].text="Route 66 Sign/Three.js JSON (.js)";
+			select.add(options[0]);
+			select.add(options[1]);
+			select.add(options[2]);
+			select.add(options[3]);
+			select.add(options[4]);
+			select.add(options[5]);
+			select.add(options[6]);
+			select.add(options[7]);
+
+			container = document.getElementById("container");
+			
+			app = new ModelViewer();
+			app.init({ container: container });
+
+			app.run();
+
+		}
+	);
+
+	</script>
+
+</head>
+<body>
+	<center><h1>Game - Model Previewer</h1></center>
+	<div id="models" style="text-align:center;" >
+	<select id="select" onchange="selectModel();"></select>
+	</div>
+    <div id="container"></div>
+	<div id="prompt">
+	Click the mouse to manipulate the model: Left = rotate, Right = Pan<br></br>
+	Credits:
+	Nissan GTR by <a href='http://www.turbosquid.com/Search/Artists/deluxe3D'>deluxe3D</a> at <a href='http://www.turbosquid.com/FullPreview/Index.cfm/ID/577061'>Turbosquid</a>		
+	Nova Car by <a href='http://www.turbosquid.com/Search/Artists/Phosphoer'>Phosphoer</a> at <a href='http://www.turbosquid.com/FullPreview/Index.cfm/ID/302272'>Turbosquid</a>
+	Hatchback by <a href='http://www.turbosquid.com/Search/Artists/OpticalDreamSoft'>OpticalDreamSoft</a> at <a href='http://www.turbosquid.com/FullPreview/Index.cfm/ID/595293'>Turbosquid</a>
+	Camaro by <a href='http://www.turbosquid.com/Search/Artists/sakis25'>sakis25</a> at <a href='// http://www.turbosquid.com/FullPreview/Index.cfm/ID/595293'>Turbosquid</a>
+
+	</div>
+	<div id="modelStats">
+	Info here:<br></br>
+	Dimensions w x h x d<br></br>
+	Poly count xxxxx
+	</div>
+
+</body>
+</html>

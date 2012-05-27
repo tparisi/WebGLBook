@@ -1,0 +1,10 @@
+# File created by ZBrush
+# ToolType: PolyMesh3D
+# www.zbrush.com
+
+newmtl defaultMat
+Kd 0.7 0.7 0.7
+
+newmtl mat1
+map_Kd alien2Tex1.bmp
+

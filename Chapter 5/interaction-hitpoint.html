@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Interaction Hit Point Example</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../libs/Tween.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="../sim/animation.js"></script>
+	<script src="../sim/interaction.js"></script>
+	<script src="../sim/utils.js"></script>
+	<script src="interaction-hitpoint.js"></script>
+	<script>
+
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			var app = new InteractionApp();
+			app.init({ container: container });
+			app.run();
+		}
+	);
+	</script>
+
+</head>
+<body style="background-color:#000000">
+	<center><h1>Interaction with Hit Point</h1></center>
+    <div id="container" style="width:95%; height:80%; position:absolute;"></div>
+	<div id="prompt" style="width:95%; height:6%; bottom:30px; text-align:center; position:absolute;">
+	Click the object to see an explosion
+	</div>
+	</div>
+
+</body>
+</html>

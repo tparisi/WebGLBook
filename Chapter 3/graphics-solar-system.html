@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Solar System Model</title>
+
+	<link rel="stylesheet" href="../css/webglbook.css" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="planet.js"></script>
+	<script src="earth.js"></script>
+	<script src="saturn.js"></script>
+	<script src="sun-shader.js"></script>
+	<script src="stars.js"></script>
+	<script src="orbit.js"></script>
+	<script src="solarSystem2.js"></script>
+		<script id="fragmentShader" type="x-shader/x-fragment">
+
+			uniform float time;
+
+			uniform sampler2D texture1;
+			uniform sampler2D texture2;
+
+			varying vec2 texCoord;
+
+			void main( void ) {
+
+				vec4 noise = texture2D( texture1, texCoord );
+				
+				vec2 T1 = texCoord + vec2( 1.5, -1.5 ) * time  * 0.01;
+				vec2 T2 = texCoord + vec2( -0.5, 2.0 ) * time *  0.01;
+
+				T1.x -= noise.r * 2.0;
+				T1.y += noise.g * 4.0;
+				T2.x += noise.g * 0.2;
+				T2.y += noise.b * 0.2;
+
+				float p = texture2D( texture1, T1 * 2.0 ).a + 0.25;
+
+				vec4 color = texture2D( texture2, T2 );
+				vec4 temp = color * 2.0 * ( vec4( p, p, p, p ) ) + ( color * color );
+				gl_FragColor = temp;
+			}
+
+		</script>
+
+		<script id="vertexShader" type="x-shader/x-vertex">
+
+			varying vec2 texCoord;
+
+			void main()
+			{
+				texCoord = uv;
+				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+				gl_Position = projectionMatrix * mvPosition;
+			}
+
+		</script>
+
+
+	<script>
+
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			var app = new SolarSystemApp();
+			app.init({ container: container });
+			app.run();
+		}
+	);
+	
+
+	</script>
+
+</head>
+<body>
+	<center><h1>Simple Solar System Model</h1></center>
+    <div id="container" style="width:95%; height:80%; overflow:hidden; position:absolute; background:#000000;"></div>
+
+</body>
+</html>

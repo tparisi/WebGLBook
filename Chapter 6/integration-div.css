@@ -1,0 +1,68 @@
+@CHARSET "UTF-8";
+
+body {
+	background-color:#222222;
+}
+
+h1 {
+	color:#ffffff;
+	font-style:normal;
+	font-family:Geneva;
+	font-weight:bold
+}
+
+#container {
+	background-image:url('../images/07.jpg');
+	width:98%;
+	height:90%;
+	position:absolute;
+	background-color:#000000;
+}
+
+.callout {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+	display:none;
+	text-align:center;
+	margin:auto;
+	padding:10px;
+	width:240px;
+	height:160px;
+	background-color:rgba(200, 200, 200, .1);	
+	z-index:0;
+	position:absolute;
+	border:1px solid  #00ff00;
+	color:#990000;
+}
+
+.callout .contents {
+	font-style:italic;
+	color:#44ddff;
+	text-align:left;
+	margin-top:4px;
+	padding:4px;
+	height:110px;
+	postion:absolute;
+}
+
+.callout .header {
+	text-align:center;
+	text-decoration:underline;
+	top: 4px;
+	postion:absolute;
+    font-weight: bold;
+	font-size: 18px;
+}
+
+.callout .closebox {
+	float:right;
+	width: 16px;
+	height: 16px;
+	top: 4px;
+	postion:absolute;
+}
+
+.callout #selectButton {
+	align:center;
+}

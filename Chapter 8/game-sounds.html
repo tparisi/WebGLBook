@@ -1,0 +1,100 @@
+<!-- Check out the source code on http://github.com/vjt/canvas-speedometer -->
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../css/webglbook.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="game-sounds.css" media="screen" />
+    </head>
+    <body>
+	<h1>Game - Sound Lab</h1>
+
+<!-- Sound credits -->
+<!-- 
+
+Driving in a Car http://www.freesound.org/people/RutgerMuller/sounds/50910/
+Nissan Maxima Burnout http://www.freesound.org/people/audible-edge/sounds/71740/
+Car Crash http://www.freesound.org/people/sandyrb/sounds/95078/
+Car Revving http://www.freesound.org/people/Walter_Odington/sounds/18620/
+ -->
+		<div class="soundsample">
+		Driving
+			<div class="sound">
+				<audio controls="controls" id="driving_controls">
+				  <source src="../sounds/50910__rutgermuller__in-car-driving.wav" type="audio/wav" />
+				  Your browser does not support WAV files in the audio element.
+				</audio>
+			</div>
+		<button type="button" onclick="document.getElementById('driving_controls').play();">play</button> 
+		<button type="button" onclick="document.getElementById('driving_controls').pause();">pause</button> 
+		<button type="button" onclick="document.getElementById('driving_controls').currentTime = 0;">start</button> 		 
+		<button type="button" onclick="document.getElementById('driving_controls').currentTime = document.getElementById('driving_controls').duration;">end</button> 		 
+		<input type="range" class="slider" min="0" max="100" value="100"
+			onchange="document.getElementById('driving_controls').volume=this.value/100;"></input>
+		</div>
+
+		<div class="soundsample">
+		Rev - Short
+			<div class="sound">
+				<audio controls="controls" id="rev_short_controls">
+				  <source src="../sounds/rev-short.wav" type="audio/wav" />
+				  Your browser does not support WAV files in the audio element.
+				</audio>
+			</div>
+		<button type="button" onclick="document.getElementById('rev_short_controls').play();">play</button> 
+		<button type="button" onclick="document.getElementById('rev_short_controls').pause();">pause</button> 
+		<button type="button" onclick="document.getElementById('rev_short_controls').currentTime = 0;">start</button> 		 
+		<button type="button" onclick="document.getElementById('rev_short_controls').currentTime = document.getElementById('rev_short_controls').duration;">end</button> 		 
+		<input type="range" class="slider" min="0" max="100" value="100"
+			onchange="document.getElementById('rev_short_controls').volume=this.value/100;"></input>
+		</div>
+
+ 		<div class="soundsample">
+		Rev - Long
+			<div class="sound">
+				<audio controls="controls" id="rev_long_controls">
+				  <source src="../sounds/rev-trimmed.wav" type="audio/wav" />
+				  Your browser does not support WAV files in the audio element.
+				</audio>
+			</div>
+		<button type="button" onclick="document.getElementById('rev_long_controls').play();">play</button> 
+		<button type="button" onclick="document.getElementById('rev_long_controls').pause();">pause</button> 
+		<button type="button" onclick="document.getElementById('rev_long_controls').currentTime = 0;">start</button> 		 
+		<button type="button" onclick="document.getElementById('rev_long_controls').currentTime = document.getElementById('rev_long_controls').duration;">end</button> 		 
+		<input type="range" class="slider" min="0" max="100" value="100"
+			onchange="document.getElementById('rev_long_controls').volume=this.value/100;"></input>
+		</div>
+		</div>
+
+		<div class="soundsample">
+		Burnout
+			<div class="sound">
+				<audio controls="controls" id="burnout_controls">
+				  <source src="../sounds/burnout-trimmed.wav" type="audio/wav" />
+				  Your browser does not support WAV files in the audio element.
+				</audio>
+			</div>
+		<button type="button" onclick="document.getElementById('burnout_controls').play();">play</button> 
+		<button type="button" onclick="document.getElementById('burnout_controls').pause();">pause</button> 
+		<button type="button" onclick="document.getElementById('burnout_controls').currentTime = 0;">start</button> 		 
+		<button type="button" onclick="document.getElementById('burnout_controls').currentTime = document.getElementById('burnout_controls').duration;">end</button> 		 
+		<input type="range" class="slider" min="0" max="100" value="100"
+			onchange="document.getElementById('burnout_controls').volume=this.value/100;"></input>
+		</div>
+
+		<div class="soundsample">
+		Crash
+			<div class="sound">
+				<audio controls="controls" id="crash_controls">
+				  <source src="../sounds/crash-trimmed.wav" type="audio/wav" />
+				  Your browser does not support WAV files in the audio element.
+				</audio>
+			</div>
+		<button type="button" onclick="document.getElementById('crash_controls').play();">play</button> 
+		<button type="button" onclick="document.getElementById('crash_controls').pause();">pause</button> 
+		<button type="button" onclick="document.getElementById('crash_controls').currentTime = 0;">start</button> 		 
+		<button type="button" onclick="document.getElementById('crash_controls').currentTime = document.getElementById('crash_controls').duration;">end</button> 		 
+		<input type="range" class="slider" min="0" max="100" value="100"
+			onchange="document.getElementById('crash_controls').volume=this.value/100;"></input>
+		</div>
+
+    </body>
+</html>

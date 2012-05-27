@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JSON Scene Loading Example</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<link href="production-loader-scene.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="sceneViewer.js"></script>
+	<script src="sceneData.js"></script>
+	<script>
+
+	function onLoadComplete()
+	{
+		// Hide the loader bar
+		var loadStatus = document.getElementById("loadStatus");
+		loadStatus.style.display = 'none';		
+	}
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			
+			var app = new SceneViewer();
+			app.init({ container: container });
+
+			// CC Attribution: model from Blendswap
+			// http://www.blendswap.com/blends/characters/animecharacter/
+			// Author: Kurama
+			// http://www.blendswap.com/blends/author/kurama/
+			var sceneData = new SceneData();
+			sceneData.onLoadComplete = onLoadComplete;			
+			sceneData.init({ url : "../models/Kinoko/character_kinoko.js", scale:1});			
+			app.addContent(sceneData);
+
+			// Hack! Turn up the headlight because scene exporter doesn't give us the
+			// scene lights...
+			app.headlight.intensity = 2;
+			
+			app.run();
+		}
+	);
+	</script>
+
+</head>
+<body>
+	<center><h1>Loading a Three.js JSON Scene</h1></center>
+    <div id="container" style="width:95%; height:80%; position:absolute;"></div>
+	<div id="loadStatus" style="width:95%; height:6%; top:200px; text-align:center; position:absolute;">
+	Loading scene...
+	</div>
+	<div id="prompt" style="width:95%; height:6%; bottom:20px; text-align:center; position:absolute;">
+	Click the mouse to navigate in the scene.<br/>
+	W/Left = move forward, S/Right = move back, A = pan left, D = pan right, R = move up, F = move down<br/>
+	Move mouse pointer to turn<br/>
+	</div>
+
+</body>
+</html>

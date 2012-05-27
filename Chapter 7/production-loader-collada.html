@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>COLLADA Model Loading Example</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="../sim/ColladaLoader.js"></script>
+	<script src="modelViewer.js"></script>
+	<script src="colladaModel.js"></script>
+	<script>
+
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			
+			var app = new ModelViewer();
+			app.init({ container: container });
+
+			// Model from http://www.3drt.com/downloads.htm
+			var model = new ColladaModel();
+		    model.init({ url : "../models/collada_monster/monster.dae", scale:0.001});			
+			app.addModel(model);
+
+			model.object3D.rotation.x = -Math.PI / 2;
+
+			app.run();
+		}
+	);
+	</script>
+
+</head>
+<body>
+	<center><h1>Loading a COLLADA Model</h1></center>
+    <div id="container" style="width:95%; height:80%; position:absolute;"></div>
+	<div id="prompt" style="width:95%; height:6%; bottom:30px; text-align:center; position:absolute;">
+	Click the mouse to manipulate the model: Left = rotate, Right = Pan
+	</div>
+	</div>
+
+</body>
+</html>

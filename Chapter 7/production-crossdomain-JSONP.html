@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cross-Domain Handling Example with JSONP</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="JSONPImageApp.js"></script>
+	<script>
+    
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+
+			var app = new JSONPImageApp();
+			app.init({ container: container });
+
+			app.run();
+		}
+	);
+	</script>
+
+</head>
+<body>
+	<center><h1>Using JSONP to Handle Cross-Domain Textures</h1></center>
+    <div id="container" style="width:95%; height:90%; position:absolute;"></div>
+    <div id="images" style="width:95%; height:6%; position:absolute; top:40px"></div>
+
+</body>
+</html>

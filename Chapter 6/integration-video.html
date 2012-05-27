@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Video Integration Example</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<link href="integration-video.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="../sim/animation.js"></script>
+	<script src="integration-video.js"></script>
+	<script src="videoPlayer.js"></script>
+	<script>
+
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			var app = new VideoApp();
+			app.init({ container: container });
+			app.run();
+		}
+	);
+	</script>
+
+</head>
+<body>
+	<video id="video1" autoplay loop style="display:none">
+		<source src="../videos/Pentagon_News_Sample.ogg" type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<video id="video2" autoplay loop style="display:none">
+		<source src="../videos/Specto.ogv" type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<video id="video3" autoplay loop style="display:none">
+		<source src="../videos/Moon_transit_of_sun_large.ogg" type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<video id="video4" autoplay loop style="display:none">
+		<source src="../videos/Anniversary.ogv" type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<video id="video5" autoplay loop style="display:none">
+		<source src="../videos/Floating Head.ogv" type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<video id="video6" autoplay loop style="display:none">
+		<source src="../videos/Motus et bouche cousue.ogv" type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<center><h1>Using Video as a Texture</h1></center>
+    <div id="container"></div>
+	<div id="prompt">
+	Click to play/pause each video
+	</div>
+	</div>
+
+</body>
+</html>

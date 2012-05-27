@@ -1,0 +1,114 @@
+<!-- Check out the source code on http://github.com/vjt/canvas-speedometer -->
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../css/webglbook.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="speedometer.css" media="screen" />
+
+		<script src="../libs/jquery-1.6.4.js"></script>
+        <script type="text/javascript" src="xcanvas.js"></script>
+        <script type="text/javascript" src="tbe.js"></script>
+
+        <script type="text/javascript" src="digitaldisplay.js"></script>
+        <script type="text/javascript" src="speedometer.js"></script>
+        <script type="text/javascript" src="themes/default.js"></script>
+        <script type="text/javascript" src="themes/racing-black.js"></script>
+
+        <script type="text/javascript" src="example.js"></script>
+        <script type="text/javascript" src="controls.js"></script>
+        <script type="text/javascript">
+          var speedometer;
+          var tachometer;
+      	$(document).ready(
+      			function() {
+
+            // Check out configuration and API on GitHub Wiki:
+            // http://wiki.github.com/vjt/canvas-speedometer
+            speedometer = new Speedometer ('speedometer', {theme: 'racing-black', max:250, 
+            	threshold:150});
+            speedometer.draw ();
+            speedometer.addEventListener ('speedometer:animateend', function () {
+              controls.start ();
+            });
+
+            var controls = new Controls (speedometer);
+
+            // The tachometer
+            tachometer = new Speedometer ('tachometer', {theme: 'racing-black', max:5000, 
+               threshold:3500});
+            tachometer.draw();
+            tachometer.addEventListener ('speedometer:animateend', function () {
+              tachcontrols.start ();
+            });
+
+            var tachcontrols = new Controls (tachometer);
+
+            var start = document.getElementById ('start');
+            var stop  = document.getElementById ('stop');
+
+            start.onclick = function ()
+            {
+              start.disabled = true;
+              stop.disabled = false;
+
+              controls.start();
+              tachcontrols.start ();              
+            }
+
+            stop.onclick = function ()
+            {
+              stop.disabled = true;
+              start.disabled = false;
+
+              controls.stop();
+              tachcontrols.stop();              
+            }
+
+            controls.start ();
+            tachcontrols.start ();
+
+            var startTime = Date.now();
+            function elapsedTime()
+            {
+            	var elapsed = (Date.now() - startTime) / 1000;
+            	
+            	var timer = document.getElementById ('elapsedTime');
+            	timer.innerHTML = "TIME<br>" + elapsed.toFixed(2);
+
+            	var speed = 250;
+            	var distance = speed * elapsed / 3600;
+            	var odo = document.getElementById ('odometer');
+            	odo.innerHTML = "TRIP<br>" + distance.toFixed(2);
+
+            	setTimeout(elapsedTime, 100);
+            }
+
+            setTimeout(elapsedTime, 100);
+            
+            }
+    	);
+        </script>
+    </head>
+    <body>
+	<center><h1>Game - Heads Up Display (HUD) Design</h1></center>
+    <div id="container" style="width:98%; height:85%; position:absolute; outline:none; background-color:#3fafdd"></div>
+
+		<div id="kmph">
+		km/h
+        <div id="speedometer"></div>
+		</div>
+		<div id="rpm">
+		rpm
+        <div id="tachometer"></div>
+		</div>
+        <div id="odometer">
+        0.00
+        </div>
+        <div id="elapsedTime">
+        0.00
+        </div>
+        <form id="controls">
+          <input type="button" id="start" value="start" />
+          <input type="button" id="stop" value="stop" /><br />
+        </form>
+    </body>
+</html>

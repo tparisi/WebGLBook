@@ -1,0 +1,24 @@
+# Blender MTL File: Nova Car.blend
+# Material Count: 2
+newmtl Car_Nova_Car_UV.jpg
+Ns 96.0
+Ka 0.0 0.0 0.0
+Kd 0.64 0.64 0.64
+Ks 0.5 0.5 0.5
+Ni 1.0
+d 1.0
+illum 2
+map_Kd NovaCarUV.jpg
+
+
+newmtl Tire_TireUV.jpg
+Ns 331.0
+Ka 0.0 0.0 0.0
+Kd 0.64 0.64 0.64
+Ks 0.5 0.5 0.5
+Ni 1.0
+d 1.0
+illum 2
+map_Kd TireUV.jpg
+
+

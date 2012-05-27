@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Context Lost Example</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<script src="webgl-debug.js"></script>
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="contextLost.js"></script>
+	<script>
+
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			var status = document.getElementById("status");
+			
+			var app = new ContextApp();
+			app.init({ container: container, status: status });
+
+			app.run();
+		}
+	);
+	</script>
+
+</head>
+<body>
+	<center><h1>Handling a Lost Context</h1></center>
+    <div id="container" style="width:95%; height:80%; position:absolute;"></div>
+	<div id="prompt" style="width:95%; height:6%; bottom:30px; text-align:center; position:absolute;">
+	Click the mouse to simulate context lost event
+	</div>
+	<div id="status" style="width:95%; height:6%; text-align:center; position:absolute; top:100px;">
+	</div>
+
+</body>
+</html>

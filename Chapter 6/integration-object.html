@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Overlaying a 3D Object on a Page</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<link href="integration-object.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="integration-object.js"></script>
+	<script>
+
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	var theApp = null;
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			theApp = new ObjectApp();
+			theApp.init({ container: container });
+			theApp.run();
+		}
+	);
+	
+	</script>
+
+</head>
+<body>
+<div class="heading">
+	<h1>Aliens Among Us!</h1>
+<p>
+People don't like to admit it, but we know it's true: <b>aliens are living among us.</b>
+</p>
+</div>
+<div class="main-photo">
+<img src="../images/ufo-fbi-releases-files.n.jpg"></img>
+</div>
+<div class="main-article">
+<a href="http://rt.com/usa/news/fbi-ufo-aliens-roswell/">TOP STORY</a><br></br>
+Recently Released FBI Files
+show undeniable
+proof that aliens not only exist, but have visited Earth!
+</div>
+<div class="sidebar">
+Nullam gravida egestas urna tincidunt porta. Morbi sed eros at leo suscipit lobortis et vitae diam. Sed tempor placerat varius. Quisque commodo posuere lectus id sollicitudin. Aliquam erat volutpat. Aenean leo neque, faucibus sit amet gravida sit amet, venenatis ut est. Duis aliquam dignissim erat, eget porta elit pharetra pulvinar. Curabitur luctus gravida magna. Nulla a tortor orci, nec feugiat eros. Sed a lectus enim, lobortis tristique ligula. Suspendisse iaculis faucibus mauris, id tempus urna blandit in.
+<p>
+Pellentesque id lorem eros, vehicula commodo augue. Suspendisse turpis arcu, bibendum ut sagittis ut, aliquam ullamcorper tellus. Quisque viverra libero ac justo scelerisque sed accumsan ante facilisis. Suspendisse sed mi id nunc ultricies rhoncus. Sed dapibus tincidunt nulla ac tincidunt. Duis sit amet odio et arcu blandit ullamcorper a id urna. Fusce eu eros vitae lacus laoreet egestas at nec elit. Suspendisse vitae enim nec justo imperdiet posuere quis vel ante. Vivamus vitae elementum nisi. Aenean iaculis, nunc sit amet laoreet tempus, sem orci semper odio, in gravida metus libero vel eros.
+</p>
+<p>
+Quisque posuere, libero ut vehicula elementum, risus purus bibendum tellus, at cursus arcu tellus a neque. Ut eget tortor mi, ut lobortis lorem. Phasellus in est risus, non fringilla metus. Suspendisse potenti. Suspendisse auctor elit at leo elementum interdum pulvinar leo congue. Nunc faucibus, massa ullamcorper euismod sollicitudin, ipsum nisl mollis enim, id sagittis turpis neque vitae urna. Nam facilisis lacus vel sapien congue consequat.
+</p>
+</div>
+    <div id="container"></div>
+	<div id="prompt">
+	<b>Drag the mouse to move the object around the page. Use the scroll wheel to zoom the object in/out.</b>
+	</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Animating Lights with Key Frames</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="../sim/animation.js"></script>
+	<script src="../sim/ColladaLoader.js"></script>
+	<script src="keyframe-lights.js"></script>
+	<script>
+
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	var theApp = null;
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			theApp = new LightsApp();
+			theApp.init({ container: container });
+			theApp.run();
+		}
+	);
+
+	function onPointLightChecked(cb)
+	{
+		theApp.setAnimatePointLight(cb.checked);
+	}
+
+	function onSpotLightChecked(cb)
+	{
+		theApp.setAnimateSpotLight(cb.checked);
+	}
+
+	function onDirectionalLightChecked(cb)
+	{
+		theApp.setAnimateDirectionalLight(cb.checked);
+	}
+	</script>
+
+</head>
+<body>
+	<center><h1>Animating Lights</h1></center>
+    <div id="container" style="width:95%; height:80%; position:absolute;"></div>
+	<div id="prompt" style="width:95%; height:6%; bottom:0px; text-align:center; position:absolute;">
+	Animate<br/>
+	<input type="checkbox" name="directional" onClick="onDirectionalLightChecked(this);"/>Intensity
+	<input type="checkbox" name="spot" onClick="onSpotLightChecked(this);"/>Color
+	<input type="checkbox" name="point" onClick="onPointLightChecked(this);"/>Distance
+	</div>
+	</div>
+
+</body>
+</html>

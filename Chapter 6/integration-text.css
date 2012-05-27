@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+
+body {
+
+		color:#000066;
+		background-color:#6699cc;
+		margin:0px;
+		padding:0px;
+		text-align:center;
+		overflow:hidden;
+}
+
+#container {
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0%;
+	background-color:rgba(255,255,255,0);
+	z-index:1;
+}

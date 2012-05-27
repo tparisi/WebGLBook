@@ -1,0 +1,18 @@
+.soundsample {
+  margin:4px;
+  padding:4px;
+  left: 40px;
+  height: 60px;
+  width: 400px;
+  border:1px dotted red;
+}
+
+.sound {
+  left: 20px;
+  height: 40px;
+  position:absolute;
+}
+
+.soundsample .slider {
+  position:absolute;
+}

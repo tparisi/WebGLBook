@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cross-Domain Handling Example with CORS</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="CORSImageApp.js"></script>
+	<script>
+    
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+
+			var app = new CORSImageApp();
+			app.init({ container: container });
+
+			app.run();
+		}
+	);
+	</script>
+
+</head>
+<body>
+	<center><h1>Loading Cross-Origin Resource Sharing (CORS)-Enabled Textures</h1></center>
+    <div id="container" style="width:95%; height:80%; position:absolute;"></div>
+	<div id="info" style="width:95%; height:6%; bottom:30px; text-align:center; position:absolute;">
+	Picasa supports CORS for image links like<br></br><a target="_blank" href='https://lh4.googleusercontent.com/-KW-igfekK1A/T4SRm1Tw7CI/AAAAAAAAACo/GIBNY3G301M/s144/tonypb.jpg'>https://lh4.googleusercontent.com/-KW-igfekK1A/T4SRm1Tw7CI/AAAAAAAAACo/GIBNY3G301M/s144/tonypb.jpg</a>
+	</div>
+	
+
+</body>
+</html>

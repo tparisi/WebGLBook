@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tween Example with Ease In/Ease Out</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/Tween.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="tween-easing.js"></script>
+	<script>
+
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			var app = new TweenApp();
+			app.init({ container: container });
+			app.run();
+		}
+	);
+
+	function onEaseInOut(useBounce)
+	{
+		MovingBall.useBounceFunction = useBounce;
+	}
+	</script>
+
+</head>
+<body>
+	<center><h1>Tween Example with Ease In/Ease Out</h1></center>
+    <div id="container" style="width:95%; height:80%; position:absolute;"></div>
+	<div id="prompt" style="width:95%; height:6%; bottom:30px; text-align:center; position:absolute;">
+	Click to run the tween animation<br/>
+	Ease in/out :
+<input type="radio" name="easeinout" checked onClick="onEaseInOut(false);"/>Quadratic
+<input type="radio" name="easeinout" onClick="onEaseInOut(true);"/>Bounce
+	</div>
+
+</body>
+</html>

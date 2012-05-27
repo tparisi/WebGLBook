@@ -1,0 +1,18 @@
+let's fake driving on track using texture animation (see chapter 4)
+let's do collision based on distance from camera first, if we have time we'll use Box physics
+try a real time shadow? so easy to fake...
+particles for exhaust and explosion, maybe turbo
+sky background
+building background
+use canvas to paint damage?
+speedometer/tachometer - how?
+gas guage ? turbo runs it down
+state machine for input
+
+3CAD
+
+Camera - over the shoulder view
+Character - the car
+Control - keyboard to steer and accelerate
+
+Art Direction -

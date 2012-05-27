@@ -1,0 +1,4 @@
+<../images/texture0.png> <../images/texture0.png>
+<../images/texture1.png> <../images/texture1.png>
+<../images/texture2.png> <../images/texture2.png>
+<../images/texture3.png> <../images/texture3.png>

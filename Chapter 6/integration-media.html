@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Media Integration Example</title>
+
+	<link href="../css/webglbook.css" rel="stylesheet" /> 
+	<link href="integration-media.css" rel="stylesheet" /> 
+	<script src="../libs/Three.js"></script>
+	<script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+	<script src="../libs/RequestAnimationFrame.js"></script>
+	<script src="../sim/sim.js"></script>
+	<script src="../sim/animation.js"></script>
+	<script src="integration-media.js"></script>
+	<script src="videoPlayer.js"></script>
+	<script src="canvasView.js"></script>
+	<script src="rssCanvasProgram.js"></script>
+	<script>
+
+	var renderer = null;
+	var scene = null;
+	var camera = null;
+	var mesh = null;
+	
+	$(document).ready(
+		function() {
+			var container = document.getElementById("container");
+			var app = new MediaApp();
+			app.init({ container: container });
+			app.run();
+		}
+	);
+	</script>
+
+</head>
+<body>
+	<video id="video1" autoplay loop style="display:none">
+		<source src="../videos/Pentagon_News_Sample.ogg" type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+    <div id="container"></div>
+	<div id ="page-title">
+	<h1>WebGL&trade; News Room</h1>
+	</div>
+	<div id ="user-stories">
+	<h3>Top User Stories</h3>
+	Lorem ipsum dolor sit amet, <a href="">consectetur</a> adipiscing elit.<br></br>
+	Nam interdum arcu sit amet mi sollicitudin ac rutrum dui cursus. Nullam interdum nibh eget mauris egestas venenatis. Sed hendrerit, lorem eu blandit tristique, dolor eros consequat risus, pellentesque bibendum ante justo a ipsum. Aenean mauris nisi, egestas nec sodales ut, interdum vel eros. Nullam varius, nibh in sodales pretium, ante mi pellentesque nunc, eget ultrices risus tellus sed dolor. Vestibulum sodales mollis molestie. Mauris nunc arcu, scelerisque ac accumsan a, fermentum nec turpis. Proin aliquet semper adipiscing. Vivamus dapibus fermentum dignissim. Nulla risus mauris, lobortis non tincidunt eget, iaculis commodo lectus. Aliquam vel arcu massa.
+	<p>
+	Donec eu rutrum diam. Ut tempor consequat nisi, quis fringilla libero fringilla ut. Praesent scelerisque, tellus et ultricies faucibus, libero neque sagittis nulla, vel vulputate urna neque eu sapien. Integer non arcu tortor. Donec non eros vel nulla facilisis porttitor vel sit amet leo. Donec adipiscing, mauris sed convallis euismod, dui quam scelerisque erat, tincidunt ullamcorper ligula arcu et leo. Vivamus ut tempor magna. Vestibulum ut sapien elit, eu volutpat metus. Etiam rutrum arcu vitae metus semper vehicula ut vel est. Suspendisse et mauris velit, sed egestas orci. Quisque lacus tellus, euismod eu congue vitae, iaculis scelerisque neque. Nunc at purus in tortor tincidunt porta sed eu arcu. Proin auctor tristique placerat. Pellentesque mattis ullamcorper erat nec laoreet. Aliquam ultricies, ante vel dignissim aliquet, odio lorem venenatis tortor, in venenatis neque metus dapibus metus.
+	</div>
+	<div id="prompt">
+	Click to play/pause the video, start/stop the news feed
+	</div>
+</body>
+</html>
