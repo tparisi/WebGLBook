@@ -28,8 +28,7 @@ LightsApp.prototype.createObjects = function()
 	this.bodygroup = bodygroup;
 	
 	var that = this;
-	// GREAT cartoon Head model - http://www.turbosquid.com/FullPreview/Index.cfm/ID/475463
-	// Licensed
+	// GREAT Head model - http://www.ir-ltd.net/infinite-3d-head-scan-released
 	var url = '../models/leeperrysmith/LeePerrySmith.js';
 	var loader = new THREE.JSONLoader;
 	loader.load(url, function (data) {
