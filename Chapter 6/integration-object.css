@@ -1,11 +1,11 @@
 @CHARSET "UTF-8";
 
 /*
-Gradient from http://www.astrosurf.com/~buil/iris/tutorial4/doc14_us.htm
+Page background from http://www.spacetelescope.org/images/heic1105a/
 */
 
 body {
-	background-image:url('../images/gradient1.jpg');
+	background-image:url('../images/heic1105a.jpg');
 	background-color:#ffffff;
 	color:#212121;
 	margin:20px;
@@ -19,6 +19,8 @@ body {
 .main-photo {
 	left:40px;
 	top:130px;
+	width:300;
+	height:240;
 	margin:0 auto;
 	width:33%;
 	padding:0px;

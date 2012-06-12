@@ -87,7 +87,9 @@ Scene.prototype.init = function(param)
 Scene.prototype.createWalls = function()
 {
 	var geometry = new THREE.CubeGeometry(.1, 20, 66);
-	var map = THREE.ImageUtils.loadTexture('../images/Brick_Texture_by_Hero_wante-TP.jpg');
+	// Brick texture adapted from http://wdc3d.com/wp-content/uploads/2010/05/red-brick-seamless-1000-x-1000.jpg
+	// From set http://wdc3d.com/2d-textures/6-seamless-tileable-brick-textures/
+	var map = THREE.ImageUtils.loadTexture('../images/red-brick-seamless-512-x-512.jpg');
     map.wrapS = map.wrapT = THREE.RepeatWrapping;
     map.repeat.set(3,3);
 	var material = new THREE.MeshLambertMaterial({ map : map});

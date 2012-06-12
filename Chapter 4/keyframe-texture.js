@@ -50,7 +50,12 @@ Waterfall.prototype = new Sim.Object();
 Waterfall.prototype.init = function()
 {
 	var group = new THREE.Object3D;
-	var map = THREE.ImageUtils.loadTexture("../images/water0hk.jpg");
+	
+	// Great water texture by Patrick Hoesly
+	// http://www.flickr.com/photos/zooboing/
+	// http://www.flickr.com/photos/zooboing/4441454031/sizes/o/in/photostream/
+	// Attribution 2.0 Generic (CC BY 2.0) 
+	var map = THREE.ImageUtils.loadTexture("../images/4441454031_7772f8351e_o.jpg");
     map.wrapS = map.wrapT = true;
     var material = new THREE.MeshBasicMaterial( 
     		{ color: 0x80aaaa, opacity: .6, transparent: true, map : map } );
