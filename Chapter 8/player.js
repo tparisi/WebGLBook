@@ -37,7 +37,8 @@ Player.prototype.init = function(param)
 
 Player.prototype.updateCamera = function()
 {
-	var camerapos = new THREE.Vector3(Player.CAMERA_OFFSET_X, Player.CAMERA_OFFSET_Y, Player.CAMERA_OFFSET_Z);
+	var camerapos = new THREE.Vector3(Player.CAMERA_OFFSET_X, 
+			Player.CAMERA_OFFSET_Y, Player.CAMERA_OFFSET_Z);
 	camerapos.addSelf(this.object3D.position);
 	this.camera.position.copy(camerapos);
 	this.camera.lookAt(this.object3D.position);

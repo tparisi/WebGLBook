@@ -35,29 +35,9 @@ CORSImageApp.prototype.update = function()
 
 CORSImageApp.prototype.createModel = function()
 {
-	// Google Maps Satellite tiles work
- 	// var image = 'http://khm1.google.com/kh/v=108&x=0&y=0&z=3&s=Gali&1334026792496';
- 	
- 	// Google Maps Map tiles work, too
- 	// I found my neighborhood using this great tool
- 	// http://facstaff.unca.edu/mcmcclur/GoogleMaps/Projections/GoogleCoords.html
- 	/*
-		zoom level = 15
-		x,y tile index = (5241, 12669)
-		lat,lng of center = (37.74055085181827, -122.41765022277832)
-		pixel coords of center = (1341766, 3243385)
-		North/West lat/lng of center tile = (37.74465712069939, -122.420654296875)
-		South East lat/lng of center tile = (37.735969208590504, -122.40966796875)
-		URL of center tile= http://mt1.google.com/vt/lyrs=m@175000000&hl=en&src=api&x=5241&s=&y=12669&z=15&s=
-	
-	var image ='http://mt1.google.com/vt/lyrs=m@175000000&hl=en&src=api&x=5241&s=&y=12669&z=15&s=';
- 	 */
-
-	// Regular API calls don't
- 	// var image = 'http://maps.googleapis.com/maps/api/staticmap?center=149%20Bronte%20St.,%20San%20Francisco,%20CA&zoom=14&size=512x512&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Ccolor:red%7Clabel:C%7C40.718217,-73.998284&sensor=false';
- 	
-	// Picasa does?
-	var image ='https://lh4.googleusercontent.com/-KW-igfekK1A/T4SRm1Tw7CI/AAAAAAAAACo/GIBNY3G301M/s144/tonypb.jpg';
+	// Load image with valid Picasa url
+	var image ='https://lh4.googleusercontent.com/-KW-igfekK1A/' +
+		'T4SRm1Tw7CI/AAAAAAAAACo/GIBNY3G301M/s144/tonypb.jpg';
 		
 	var that = this;
 	

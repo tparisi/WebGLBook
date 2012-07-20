@@ -47,7 +47,9 @@ VideoPlayer.prototype.init = function(param)
     this.animator.init({ 
     	interps:
     		[ 
-    	    { keys:VideoPlayer.rotationKeys, values:VideoPlayer.rotationValues, target:this.object3D.rotation } 
+    	    { keys:VideoPlayer.rotationKeys, 
+    	    	values:VideoPlayer.rotationValues, 
+    	    	target:this.object3D.rotation } 
     		],
     	loop: false,
     	duration:VideoPlayer.animation_time

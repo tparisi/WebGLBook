@@ -131,7 +131,8 @@ MorphModel.prototype.handleLoaded = function(data)
 		
 		// Fun! Fake shadow using a scaled version of the original mesh
 		// plus shadowy material
-		var material = new THREE.MeshBasicMaterial( { color: 0x444444, opacity: 0.8, morphTargets: true } );
+		var material = new THREE.MeshBasicMaterial( 
+				{ color: 0x444444, opacity: 0.8, morphTargets: true } );
 		material.shading = THREE.FlatShading;
 		var mesh2 = new THREE.MorphAnimMesh( geometry, material  );
 		mesh2.scale.set(1, 0.001, 1.5);

@@ -132,7 +132,8 @@ TextObject.prototype.createTextMesh = function()
 
 	var faceMaterial = new THREE.MeshFaceMaterial();
 
-	var textMaterialFront = new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading } );
+	var textMaterialFront = new THREE.MeshPhongMaterial( 
+			{ color: 0xffffff, shading: THREE.FlatShading } );
 
 	var textGeometry = new THREE.TextGeometry( text, 
 			{ size: size, height: height, font: font, weight: weight, style: style,
@@ -147,7 +148,8 @@ TextObject.prototype.createTextMesh = function()
 	textGeometry.computeVertexNormals();
 
 	textMesh = new THREE.Mesh( textGeometry, faceMaterial );
-	var centerOffset = -0.5 * ( textGeometry.boundingBox.x[ 1 ] - textGeometry.boundingBox.x[ 0 ] );
+	var centerOffset = -0.5 * ( textGeometry.boundingBox.x[ 1 ] - 
+			textGeometry.boundingBox.x[ 0 ] );
 	textMesh.position.x = centerOffset;
 	this.object3D.add(textMesh);
 	this.mesh = textMesh;

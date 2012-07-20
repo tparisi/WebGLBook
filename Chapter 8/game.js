@@ -83,7 +83,8 @@ RacingGame.prototype.loadCars = function()
 	model.init(
 			{
 				url : "../models/Camaro-1/Camaro.js",
-				callback: function(model) { that.onCarLoaded(model, "camaro_silver", 
+				callback: function(model) 
+				{ that.onCarLoaded(model, "camaro_silver", 
 				{
 					scale:0.17, 
 					position:{x:1, y:-.5, z:Car.CAR_LENGTH},
