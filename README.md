@@ -15,7 +15,8 @@ Apache. localhost:// is fine but it needs to be coming from a server or loading 
 textures and JSON for models simply won't work because of browser security restrictions. Or, if you have
 Python installed on your machine, you can run the simple web server module and serve up files that way:
 
-cd <path to the example files>
+cd &lt;path to the example files&gt;
+
 python -m SimpleHTTPServer
 
 Then point your web browser at
